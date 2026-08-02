@@ -21,23 +21,59 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "MyTools Profil Kesim Optimizasyonu",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web",
-  "url": "https://mytools.com.tr/",
-  "inLanguage": "tr-TR",
-  "description": "Alüminyum ve doğrusal profiller için stok boyu, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabı yapan ücretsiz web aracı.",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "TRY"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "MyTools",
-    "url": "https://mytools.com.tr/"
-  }
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "MyTools Profil Kesim Optimizasyonu",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://mytools.com.tr/",
+      "inLanguage": "tr-TR",
+      "description": "Alüminyum ve doğrusal profiller için stok boyu, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabı yapan ücretsiz web aracı.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "TRY"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "45 derece kesimde neden ek pay eklenmiyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bu sürümde ölçü, profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçü olarak kabul edilir. Açı seçimi yalnızca kesim yönünü gösterir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bıçak payı nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bıçak payı veya kerf, testere bıçağının kesim sırasında malzemeden kaldırdığı genişliktir. Gerçek makine ve bıçak değeri kullanılmalıdır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sonuçlar kesin optimum mudur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Araç optimize edilmiş bir plan üretir; ancak her veri setinde teorik olarak en düşük fireyi garanti etmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Girdiğim proje ve ölçüler sunucuya kaydediliyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mevcut sürümde hesaplama tarayıcıda yapılır ve proje adı, parça ölçüleri veya notlar MyTools veri tabanına kaydedilmez."
+          }
+        }
+      ]
+    }
+  ]
 }
 </script>
 <style>
@@ -273,6 +309,34 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
     grid-template-columns: 80px 46px 82px 82px 1fr 28px;
   }
 }
+
+/* ── SEO içerik ve alt bilgi ── */
+.info-content {
+  max-width: 820px;
+  margin: 2rem auto 0;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.info-content h2 { font-size: 20px; margin: 0 0 1rem; color: #1a1a1a; }
+.info-content h3 { font-size: 16px; margin: 1.5rem 0 .6rem; color: #333; }
+.info-content p, .info-content li { font-size: 14px; line-height: 1.7; color: #555; }
+.info-content ol, .info-content ul { padding-left: 1.25rem; }
+.info-content .notice {
+  margin-top: 1rem; padding: 12px 14px; border-radius: 10px;
+  background: #f7f7f7; border: 1px solid #e8e8e8;
+}
+.faq-item { border-top: 1px solid #eee; padding: 1rem 0; }
+.faq-item:first-of-type { border-top: 0; }
+.site-footer {
+  max-width: 820px; margin: 1rem auto 0; padding: 1rem;
+  text-align: center; font-size: 12px; color: #777;
+}
+.site-footer a { color: #555; text-decoration: none; margin: 0 .45rem; }
+.site-footer a:hover { text-decoration: underline; }
+@media print { .info-content, .site-footer { display: none !important; } }
+
 </style>
 </head>
 <body>
@@ -365,6 +429,71 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 
   <div id="result"></div>
 </div>
+
+
+<section class="info-content" aria-labelledby="about-tool">
+  <h2 id="about-tool">Profil Kesim Optimizasyonu Nasıl Kullanılır?</h2>
+  <p>
+    MyTools Profil Kesim Optimizasyonu; alüminyum profil, kutu profil ve benzeri doğrusal
+    malzemelerde gerekli stok adedini, toplam fireyi, bıçak kaybını ve yaklaşık verimliliği
+    hesaplamaya yardımcı olan ücretsiz bir web aracıdır.
+  </p>
+
+  <h3>5 adımda kesim planı</h3>
+  <ol>
+    <li>Proje adını ve tarihi girin.</li>
+    <li>Kullanacağınız 3.000 mm veya 6.000 mm stok profil boyunu seçin.</li>
+    <li>Testerenizin kesim genişliğine göre bıçak payını (kerf) tanımlayın.</li>
+    <li>Her parçanın dıştan dışa bitmiş uzunluğunu, adedini, uç açılarını ve notunu girin.</li>
+    <li>“Hesapla” butonuyla planı oluşturun; sonucu kontrol edip PDF olarak kaydedin.</li>
+  </ol>
+
+  <h3>Teknik varsayımlar</h3>
+  <ul>
+    <li>Girilen ölçüler profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçüdür.</li>
+    <li>45° uç seçimi stok tüketimine ilave uzunluk eklemez; kesim yönünü belirtir.</li>
+    <li>Bıçak payı, aynı stok profil üzerindeki parçalar arasındaki kesim kaybına uygulanır.</li>
+    <li>Plan, hızlı bir sezgisel optimizasyon yöntemiyle oluşturulur; her veri setinde matematiksel optimum garanti edilmez.</li>
+  </ul>
+
+  <div class="notice">
+    <strong>Üretim kontrolü:</strong> Sonuçlar yardımcı planlama amacı taşır. Kesime başlamadan önce
+    ölçüleri, makine ayarlarını, bıçak payını, profil yönünü ve kesim sırasını kullanıcı doğrulamalıdır.
+  </div>
+
+  <h3>Örnek hesap</h3>
+  <p>
+    6.000 mm stok, 5 mm bıçak payı ve farklı adetlerde 1.200 mm, 900 mm ve 650 mm parçalar
+    girildiğinde araç; parçaları stok profillere dağıtır, her profil için kalan fireyi gösterir
+    ve toplam malzeme kullanımını özetler.
+  </p>
+
+  <h2>Sık Sorulan Sorular</h2>
+
+  <div class="faq-item">
+    <h3>45 derece kesimde neden ek pay eklenmiyor?</h3>
+    <p>Bu sürümde ölçü, profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçü olarak kabul edilir. Bu nedenle açı seçimi yalnızca kesim yönünü gösterir.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Bıçak payı nedir?</h3>
+    <p>Bıçak payı veya kerf, testere bıçağının kesim sırasında malzemeden kaldırdığı genişliktir. Gerçek makine ve bıçak değeriniz kullanılmalıdır.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Sonuçlar kesin optimum mudur?</h3>
+    <p>Hayır. Araç optimize edilmiş, uygulanabilir bir plan üretir; ancak her veri setinde teorik olarak en düşük fireyi garanti etmez.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Girdiğim proje ve ölçüler sunucuya kaydediliyor mu?</h3>
+    <p>Mevcut sürümde hesaplama tarayıcınızda yapılır ve proje adı, parça ölçüleri veya notlar MyTools veri tabanına kaydedilmez.</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>© 2026 MyTools</span>
+  <a href="/gizlilik.html">Gizlilik ve KVKK</a>
+  <a href="/kullanim-sartlari.html">Kullanım Şartları</a>
+  <a href="/sorumluluk.html">Sorumluluk Sınırı</a>
+</footer>
 
 <script>
 // MyTools V1.0 revizyonu: dıştan dışa ölçü esaslı 45° kesim mantığı.
