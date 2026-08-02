@@ -1,1 +1,634 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)file:///C:/Users/OzanR%C3%BC%C5%9Fvanl%C4%B1/Downloads/profil_kesim_optimizasyonu_3.html -->
+<html lang="tr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyTools Profil Kesim Optimizasyonu</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f0f0f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+}
+
+h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
+.subtitle { font-size: 13px; color: #999; margin-bottom: 2rem; }
+
+.section { margin-bottom: 1.5rem; }
+.label { font-size: 13px; color: #555; margin-bottom: 8px; display: block; font-weight: 500; }
+
+/* ── Proje bilgileri ── */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.field-wrap { display: flex; flex-direction: column; gap: 4px; }
+.field-wrap label { font-size: 12px; color: #888; }
+.field-wrap input {
+  padding: 9px 12px; border: 1.5px solid #e0e0e0;
+  border-radius: 10px; font-size: 14px; color: #1a1a1a;
+  background: #fff; transition: border-color .15s; width: 100%;
+}
+.field-wrap input:focus { outline: none; border-color: #378ADD; }
+
+/* ── Toggle ── */
+.toggle-row { display: flex; gap: 8px; }
+.toggle-btn {
+  flex: 1; padding: 10px;
+  border: 1.5px solid #ddd; border-radius: 10px;
+  background: transparent; cursor: pointer;
+  font-size: 14px; font-weight: 500; color: #444; transition: all .15s;
+}
+.toggle-btn.active { background: #EBF4FF; border-color: #378ADD; color: #185FA5; }
+
+/* ── Kerf & profil yüksekliği ── */
+.settings-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.setting-box {
+  display: flex; align-items: center; gap: 10px;
+  background: #fafafa; border: 1.5px solid #eee;
+  border-radius: 10px; padding: 10px 14px;
+}
+.setting-box label { font-size: 13px; color: #555; flex: 1; }
+.setting-box input {
+  width: 68px; padding: 6px 10px; border: 1.5px solid #ddd;
+  border-radius: 8px; font-size: 14px; text-align: center;
+  color: #1a1a1a; background: #fff;
+}
+.setting-box input:focus { outline: none; border-color: #378ADD; }
+.setting-box span { font-size: 12px; color: #999; white-space: nowrap; }
+
+/* ── İhtiyaç listesi ── */
+.col-header {
+  display: grid;
+  grid-template-columns: 90px 54px 90px 90px 1fr 28px;
+  gap: 6px; padding-bottom: 4px; align-items: center;
+}
+.col-h { font-size: 10px; color: #bbb; text-transform: uppercase; letter-spacing: 0.04em; text-align: center; }
+.col-h:first-child { text-align: left; }
+
+.cut-row {
+  display: grid;
+  grid-template-columns: 90px 54px 90px 90px 1fr 28px;
+  gap: 6px; align-items: center; margin-bottom: 8px;
+}
+
+.cut-row input[type=number] {
+  padding: 8px 10px; border: 1.5px solid #e0e0e0;
+  border-radius: 10px; font-size: 13px; color: #1a1a1a;
+  background: #fff; transition: border-color .15s; width: 100%;
+  text-align: center;
+}
+.cut-row input[type=number]:focus { outline: none; border-color: #378ADD; }
+
+.angle-sel {
+  display: flex; border: 1.5px solid #e0e0e0; border-radius: 10px;
+  overflow: hidden; height: 36px;
+}
+.angle-sel button {
+  flex: 1; border: none; background: transparent; cursor: pointer;
+  font-size: 11px; font-weight: 600; color: #aaa;
+  transition: all .12s; padding: 0;
+}
+.angle-sel button.on { background: #1a1a1a; color: #fff; }
+.angle-sel button:first-child { border-right: 1px solid #e0e0e0; }
+
+.note-input {
+  padding: 8px 10px; border: 1.5px solid #e0e0e0;
+  border-radius: 10px; font-size: 12px; color: #666;
+  background: #fff; width: 100%;
+}
+.note-input:focus { outline: none; border-color: #378ADD; }
+.note-input::placeholder { color: #ccc; }
+
+.del-btn {
+  width: 28px; height: 28px; border: 1.5px solid #e0e0e0;
+  border-radius: 8px; background: transparent; cursor: pointer;
+  color: #bbb; font-size: 16px; display: flex;
+  align-items: center; justify-content: center; transition: all .15s;
+}
+.del-btn:hover { background: #FFF0F0; border-color: #f09595; color: #E24B4A; }
+
+.add-btn {
+  width: 100%; padding: 9px; border: 1.5px dashed #ddd;
+  border-radius: 10px; background: transparent; cursor: pointer;
+  color: #aaa; font-size: 13px; margin-top: 4px; transition: all .15s;
+}
+.add-btn:hover { background: #f9f9f9; color: #555; }
+
+/* ── Butonlar ── */
+.btn-row { display: flex; gap: 10px; margin-top: 0.5rem; }
+.calc-btn {
+  flex: 1; padding: 13px; border: none;
+  border-radius: 12px; background: #1a1a1a; cursor: pointer;
+  font-size: 15px; font-weight: 600; color: #fff; transition: background .15s;
+}
+.calc-btn:hover { background: #333; }
+
+.pdf-btn {
+  padding: 13px 20px; border: 1.5px solid #ddd;
+  border-radius: 12px; background: transparent; cursor: pointer;
+  font-size: 14px; font-weight: 500; color: #555;
+  transition: all .15s; white-space: nowrap;
+  display: none; align-items: center; gap: 6px;
+}
+.pdf-btn:hover { background: #f5f5f5; border-color: #bbb; }
+.pdf-btn.visible { display: flex; }
+
+/* ── Sonuç ── */
+#result { margin-top: 2rem; }
+.divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.5rem 0; }
+
+.metrics {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; margin-bottom: 1.5rem;
+}
+.metric { background: #f7f7f7; border-radius: 12px; padding: .9rem 1rem; text-align: center; }
+.metric .val { font-size: 20px; font-weight: 700; color: #1a1a1a; }
+.metric .lbl { font-size: 11px; color: #999; margin-top: 3px; }
+
+.result-label { font-size: 13px; color: #666; font-weight: 600; margin-bottom: 8px; display: block; }
+
+.legend { display: flex; gap: 16px; font-size: 11px; color: #aaa; margin-bottom: 12px; flex-wrap: wrap; }
+.legend span { display: flex; align-items: center; gap: 5px; }
+.legend-box { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+.cut-card {
+  border: 1.5px solid #ebebeb; border-radius: 12px;
+  padding: 1rem; margin-bottom: 10px; background: #fff;
+}
+.cut-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.cut-title { font-size: 14px; font-weight: 600; color: #333; }
+
+.cut-badge {
+  font-size: 11px; padding: 3px 10px; border-radius: 8px;
+  font-weight: 500; background: #EAF3DE; color: #3B6D11;
+}
+.cut-badge.warn { background: #FAEEDA; color: #854F0B; }
+
+/* SVG bant */
+.bar-svg { width: 100%; height: 32px; display: block; margin-bottom: 8px; }
+
+.cuts-detail { font-size: 12px; color: #999; line-height: 2; }
+.cuts-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+.cuts-table th { text-align: left; color: #bbb; font-weight: 500; padding: 3px 6px; border-bottom: 1px solid #f0f0f0; }
+.cuts-table td { padding: 4px 6px; color: #666; border-bottom: 1px solid #f8f8f8; vertical-align: middle; }
+.cuts-table tr:last-child td { border-bottom: none; }
+.angle-tag {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 1px 6px; border-radius: 4px;
+  background: #f0f0f0; color: #888; margin-left: 2px;
+}
+.angle-tag.deg45 { background: #EBF4FF; color: #185FA5; }
+
+.summary-box {
+  background: #f7f7f7; border-radius: 10px;
+  padding: 10px 14px; margin-top: 12px;
+  font-size: 12px; color: #666; line-height: 2;
+}
+
+.error {
+  font-size: 13px; color: #A32D2D; padding: 10px 14px;
+  background: #FCEBEB; border-radius: 10px; margin-top: 12px; font-weight: 500;
+}
+
+/* ── PRINT ── */
+@media print {
+  body { background: #fff; padding: 0; }
+  .container { box-shadow: none; padding: 1rem 1.5rem; border-radius: 0; max-width: 100%; }
+  .no-print, .btn-row { display: none !important; }
+  h1 { font-size: 16px; }
+  .subtitle { display: none; }
+  .metrics { gap: 8px; margin-bottom: 1rem; }
+  .metric { padding: .6rem; border-radius: 8px; }
+  .metric .val { font-size: 16px; }
+  .cut-card { break-inside: avoid; border: 1px solid #ddd; border-radius: 8px; padding: .75rem; margin-bottom: 8px; }
+  .divider { margin: 1rem 0; }
+  .print-header { display: block !important; }
+  .print-title { display: block !important; }
+}
+
+.print-header {
+  display: none; font-size: 11px; color: #888;
+  margin-bottom: 1rem; padding-bottom: 8px;
+  border-bottom: 1px solid #eee; line-height: 1.8;
+}
+.print-title { display: none; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+
+@media (max-width: 600px) {
+  .metrics { grid-template-columns: repeat(2,1fr); }
+  .container { padding: 1.25rem; }
+  .project-grid { grid-template-columns: 1fr; }
+  .settings-grid { grid-template-columns: 1fr; }
+  .col-header, .cut-row {
+    grid-template-columns: 80px 46px 82px 82px 1fr 28px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>Profil Kesim Optimizasyonu</h1>
+  <p class="subtitle">Dıştan dışa bitmiş ölçülere göre optimize edilmiş kesim planı oluşturur</p>
+
+  <!-- Proje bilgileri -->
+  <div class="section no-print">
+    <span class="label">Proje bilgileri</span>
+    <div class="project-grid">
+      <div class="field-wrap">
+        <label>Proje adı</label>
+        <input type="text" id="project-name" placeholder="örn: Çelik konstrüksiyon — Blok A">
+      </div>
+      <div class="field-wrap">
+        <label>Tarih</label>
+        <input type="date" id="project-date">
+      </div>
+    </div>
+  </div>
+
+  <!-- Stok uzunluğu -->
+  <div class="section no-print">
+    <span class="label">Stok profil uzunluğu</span>
+    <div class="toggle-row">
+      <button class="toggle-btn active" onclick="selectLen(this,6000)">6 mt &nbsp;(6000 mm)</button>
+      <button class="toggle-btn" onclick="selectLen(this,3000)">3 mt &nbsp;(3000 mm)</button>
+    </div>
+  </div>
+
+  <!-- Bıçak payı + profil yüksekliği -->
+  <div class="section no-print">
+    <span class="label">Kesim ayarları</span>
+    <div class="settings-grid">
+      <div class="setting-box">
+        <label>Bıçak payı (kerf)</label>
+        <input type="number" id="kerf-input" value="5" min="0" max="30" step="0.5">
+        <span>mm / kesim</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- İhtiyaç listesi -->
+  <div class="section no-print">
+    <span class="label">İhtiyaç listesi</span>
+    <div style="font-size:12px;color:#777;background:#f7f7f7;border:1px solid #eee;border-radius:10px;padding:9px 12px;margin-bottom:10px;line-height:1.5">
+      Uzunluklar, profilin uzun yüzündeki <strong>dış köşeden dış köşeye bitmiş ölçü</strong> olarak girilmelidir.
+      45° uç seçimi stok tüketimine ek pay eklemez; yalnızca kesim yönünü ve üretim bilgisini gösterir.
+    </div>
+    <div class="col-header">
+      <span class="col-h">Uzunluk (mm)</span>
+      <span class="col-h">Adet</span>
+      <span class="col-h">Sol uç</span>
+      <span class="col-h">Sağ uç</span>
+      <span class="col-h">Not / konum</span>
+      <span></span>
+    </div>
+    <div id="cuts-list">
+    <div class="cut-row">
+      <input type="number" placeholder="örn: 1200" value="" min="1" oninput="syncField(0,&#39;len&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}">
+      <input type="number" value="1" min="1" oninput="syncField(0,&#39;qty&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}">
+      <div class="angle-sel">
+        <button class="on" onclick="setAngle(0,&#39;leftAngle&#39;,90)">90°</button>
+        <button class="" onclick="setAngle(0,&#39;leftAngle&#39;,45)">45°</button>
+      </div>
+      <div class="angle-sel">
+        <button class="on" onclick="setAngle(0,&#39;rightAngle&#39;,90)">90°</button>
+        <button class="" onclick="setAngle(0,&#39;rightAngle&#39;,45)">45°</button>
+      </div>
+      <input class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="" oninput="syncField(0,&#39;note&#39;,this.value)">
+      <button class="del-btn" onclick="removeRow(0)">×</button>
+    </div>
+  </div>
+    <button class="add-btn" onclick="addRow()">+ Yeni uzunluk ekle</button>
+  </div>
+
+  <!-- Butonlar -->
+  <div class="btn-row no-print">
+    <button class="calc-btn" onclick="calculate()">Hesapla</button>
+    <button class="pdf-btn" id="pdf-btn" onclick="exportPDF()">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 12.5h8M8 2v8M5 7l3 3 3-3"></path>
+      </svg>
+      PDF Kaydet
+    </button>
+  </div>
+
+  <div id="result"></div>
+</div>
+
+<script>
+// MyTools V1.0 revizyonu: dıştan dışa ölçü esaslı 45° kesim mantığı.
+let stockLen = 6000;
+let rows = [{ len:'', qty:'1', leftAngle:90, rightAngle:90, note:'' }];
+
+const COLORS = [
+  '#1D9E75','#378ADD','#D85A30','#7F77DD',
+  '#BA7517','#D4537E','#639922','#3B6D11',
+  '#185FA5','#0F6E56','#993C1D','#533489'
+];
+
+// Bugünün tarihini varsayılan olarak ata
+document.getElementById('project-date').value = new Date().toISOString().slice(0,10);
+
+function selectLen(btn, val) {
+  stockLen = val;
+  document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function getKerf() { return parseFloat(document.getElementById('kerf-input').value) || 0; }
+
+function escapeHTML(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, ch => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;'
+  })[ch]);
+}
+
+function addRow() {
+  rows.push({ len:'', qty:'1', leftAngle:90, rightAngle:90, note:'' });
+  render();
+  setTimeout(() => {
+    const inputs = document.querySelectorAll('#cuts-list .cut-row input[type=number]');
+    if (inputs.length) inputs[inputs.length - 2].focus();
+  }, 50);
+}
+
+function removeRow(i) {
+  if (rows.length === 1) { rows[0] = { len:'', qty:'1', leftAngle:90, rightAngle:90, note:'' }; render(); return; }
+  rows.splice(i, 1); render();
+}
+
+function setAngle(i, side, deg) {
+  rows[i][side] = deg; render();
+}
+function syncField(i, field, val) { rows[i][field] = val; }
+
+function render() {
+  document.getElementById('cuts-list').innerHTML = rows.map((r, i) => `
+    <div class="cut-row">
+      <input type="number" placeholder="örn: 1200" value="${r.len}" min="1"
+        oninput="syncField(${i},'len',this.value)"
+        onkeydown="if(event.key==='Enter'){addRow();}">
+      <input type="number" value="${r.qty}" min="1"
+        oninput="syncField(${i},'qty',this.value)"
+        onkeydown="if(event.key==='Enter'){addRow();}">
+      <div class="angle-sel">
+        <button class="${r.leftAngle===90?'on':''}"  onclick="setAngle(${i},'leftAngle',90)">90°</button>
+        <button class="${r.leftAngle===45?'on':''}"  onclick="setAngle(${i},'leftAngle',45)">45°</button>
+      </div>
+      <div class="angle-sel">
+        <button class="${r.rightAngle===90?'on':''}" onclick="setAngle(${i},'rightAngle',90)">90°</button>
+        <button class="${r.rightAngle===45?'on':''}" onclick="setAngle(${i},'rightAngle',45)">45°</button>
+      </div>
+      <input class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="${r.note}"
+        oninput="syncField(${i},'note',this.value)">
+      <button class="del-btn" onclick="removeRow(${i})">&#215;</button>
+    </div>
+  `).join('');
+}
+
+/* ── Bant SVG'si ── */
+function makeSVG(bin, colorMap, kerf, stockLen) {
+  const W = 600, H = 28, pad = 2;
+  const usable = W - pad * 2;
+
+  let x = pad;
+  let shapes = '';
+
+  bin.cuts.forEach((seg, idx) => {
+    // kerf bloğu (ilk parçadan önce yok)
+    if (idx > 0 && kerf > 0) {
+      const kw = Math.max((kerf / stockLen) * usable, 3);
+      shapes += `<rect x="${x}" y="2" width="${kw}" height="${H-4}" rx="2" fill="#d0c0c0" opacity=".55"/>`;
+      x += kw;
+    }
+
+    const rawW = (seg.effLen / stockLen) * usable;
+    const sw   = Math.max(rawW, 6);
+    const col  = colorMap[seg.origLen];
+
+    // Sol uç kesiği (45°)
+    const clipL = seg.leftAngle === 45 ? 6 : 0;
+    // Sağ uç kesiği (45°)
+    const clipR = seg.rightAngle === 45 ? 6 : 0;
+
+    const y1 = 2, y2 = H - 2;
+
+    // Polygon noktaları
+    const tl = { x: x,           y: y1 + clipL };
+    const bl = { x: x,           y: y2          };
+    const tr = { x: x + sw,      y: y1          };
+    const br = { x: x + sw,      y: y2 - clipR  };
+    const tlc = { x: x,          y: y1          }; // sol üst köşe (90 ise aynı)
+    const brc = { x: x + sw,     y: y2          }; // sağ alt köşe (90 ise aynı)
+
+    let pts;
+    if (seg.leftAngle === 45 && seg.rightAngle === 45) {
+      pts = `${x},${y2} ${x},${tl.y} ${tr.x},${y1} ${br.x},${y2}`;
+    } else if (seg.leftAngle === 45) {
+      pts = `${x},${y2} ${x},${tl.y} ${tr.x},${y1} ${tr.x},${y2}`;
+    } else if (seg.rightAngle === 45) {
+      pts = `${x},${y2} ${x},${y1} ${tr.x},${y1} ${brc.x},${y2 - clipR}`;
+    } else {
+      pts = `${x},${y1} ${tr.x},${y1} ${tr.x},${y2} ${x},${y2}`;
+    }
+
+    shapes += `<polygon points="${pts}" fill="${col}"/>`;
+
+    // Uzunluk etiketi
+    const label = seg.origLen >= 300 ? seg.origLen + '' : '';
+    if (sw > 24 && label) {
+      shapes += `<text x="${x + sw/2}" y="${H/2 + 4}" text-anchor="middle"
+        font-size="10" font-weight="600" fill="white">${label}</text>`;
+    }
+    x += sw;
+  });
+
+  // Fire bloğu
+  const wasteW = usable - (x - pad);
+  if (wasteW > 2) {
+    shapes += `<rect x="${x}" y="2" width="${wasteW}" height="${H-4}" rx="2" fill="#e8e8e8"/>`;
+  }
+
+  return `<svg class="bar-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"
+    style="border-radius:6px;background:#f0f0f0">${shapes}</svg>`;
+}
+
+/* ── Hesaplama ── */
+function calculate() {
+  const res = document.getElementById('result');
+  const kerf = getKerf();
+
+  let pieces = [];
+  let colorMap = {};
+  let colorIdx = 0;
+
+  for (let r of rows) {
+    const l = parseInt(r.len);
+    const q = parseInt(r.qty) || 1;
+    if (!l || l <= 0) continue;
+
+    const effL = l; // Girilen ölçü dıştan dışa bitmiş ölçüdür; 45° için ek pay eklenmez.
+
+    if (effL > stockLen) {
+      res.innerHTML = `<div class="error">Hata: ${l} mm parça stok profilden (${stockLen} mm) büyük.</div>`;
+      return;
+    }
+    if (!colorMap[l]) { colorMap[l] = COLORS[colorIdx % COLORS.length]; colorIdx++; }
+
+    for (let j = 0; j < q; j++) {
+      pieces.push({
+        origLen: l, effLen: effL,
+        leftAngle: r.leftAngle, rightAngle: r.rightAngle,
+        note: r.note
+      });
+    }
+  }
+
+  if (!pieces.length) {
+    res.innerHTML = `<div class="error">Lütfen en az bir geçerli uzunluk girin.</div>`;
+    return;
+  }
+
+  // First Fit Decreasing (effLen'e göre sırala)
+  pieces.sort((a, b) => b.effLen - a.effLen);
+
+  let bins = [];
+  for (let p of pieces) {
+    let placed = false;
+    for (let b of bins) {
+      const kerfNeeded = b.cuts.length > 0 ? kerf : 0;
+      if (b.rem >= p.effLen + kerfNeeded) {
+        b.rem    -= (p.effLen + kerfNeeded);
+        b.kerfs  += kerfNeeded;
+        b.cuts.push(p);
+        placed = true;
+        break;
+      }
+    }
+    if (!placed) bins.push({ cuts:[p], rem: stockLen - p.effLen, kerfs:0 });
+  }
+
+  const totalStock = bins.length;
+  const totalMat   = totalStock * stockLen;
+  const totalKerf  = bins.reduce((s,b) => s + b.kerfs, 0);
+  const totalFire  = bins.reduce((s,b) => s + b.rem,   0);
+  const totalWaste = totalFire + totalKerf;
+  const eff        = ((totalMat - totalWaste) / totalMat * 100).toFixed(1);
+
+  // Proje bilgileri
+  const projNameRaw = document.getElementById('project-name').value.trim() || '—';
+  const projName = escapeHTML(projNameRaw);
+  const projDate = document.getElementById('project-date').value
+    ? new Date(document.getElementById('project-date').value).toLocaleDateString('tr-TR')
+    : new Date().toLocaleDateString('tr-TR');
+  const now = new Date();
+  const printTime = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
+
+  let html = `
+  <hr class="divider">
+  <div class="print-title">${projName}</div>
+  <div class="print-header">
+    Proje: <strong>${projName}</strong> &nbsp;|&nbsp;
+    Tarih: <strong>${projDate}</strong> &nbsp;|&nbsp;
+    Stok: ${stockLen/1000} mt &nbsp;|&nbsp;
+    Bıçak payı: ${kerf} mm &nbsp;|&nbsp;
+    Ölçü referansı: dıştan dışa &nbsp;|&nbsp;
+    Basım: ${printTime}
+  </div>
+  <div class="metrics">
+    <div class="metric"><div class="val">${totalStock}</div><div class="lbl">Profil sayısı</div></div>
+    <div class="metric"><div class="val">${(totalFire/1000).toFixed(3)} m</div><div class="lbl">Toplam fire</div></div>
+    <div class="metric"><div class="val">${(totalKerf/1000).toFixed(3)} m</div><div class="lbl">Bıçak kaybı</div></div>
+    <div class="metric"><div class="val">%${eff}</div><div class="lbl">Verimlilik</div></div>
+  </div>
+  <span class="result-label">
+    Kesim planı &mdash; stok: ${stockLen/1000} mt &nbsp;|&nbsp;
+    bıçak payı: ${kerf} mm &nbsp;|&nbsp;
+    ölçü: dıştan dışa bitmiş ölçü
+  </span>
+  <div class="legend">
+    <span><div class="legend-box" style="background:#d0c0c0;opacity:.7"></div>Bıçak kaybı (${kerf} mm)</span>
+    <span><div class="legend-box" style="background:#e8e8e8"></div>Fire (arta kalan)</span>
+    <span style="color:#185FA5">◤ Köşeli uç = 45° miter</span>
+  </div>`;
+
+  bins.forEach((b, i) => {
+    const fireRatio = b.rem / stockLen;
+    const badgeCls  = fireRatio < 0.05 ? '' : 'warn';
+    const badgeTxt  = b.rem === 0 ? 'Tam dolu' : fireRatio < 0.05 ? 'Verimli' : `Fire: ${b.rem} mm`;
+
+    const svgBand = makeSVG(b, colorMap, kerf, stockLen);
+
+    // Detay tablosu
+    let tableRows = b.cuts.map((seg, idx) => {
+      const lTag = `<span class="angle-tag ${seg.leftAngle===45?'deg45':''}">${seg.leftAngle}°</span>`;
+      const rTag = `<span class="angle-tag ${seg.rightAngle===45?'deg45':''}">${seg.rightAngle}°</span>`;
+      const kerfThis = idx > 0 ? kerf : 0;
+      const noteCell = seg.note ? `<em style="color:#aaa">${escapeHTML(seg.note)}</em>` : '';
+      return `<tr>
+        <td style="color:${colorMap[seg.origLen]};font-weight:600">${idx+1}</td>
+        <td style="font-weight:600;color:${colorMap[seg.origLen]}">${seg.origLen} mm</td>
+        <td>${lTag}</td>
+        <td>${rTag}</td>
+        <td style="color:#bbb">${kerfThis > 0 ? kerfThis+' mm' : '—'}</td>
+        <td>${noteCell}</td>
+      </tr>`;
+    }).join('');
+
+    html += `
+    <div class="cut-card">
+      <div class="cut-header">
+        <span class="cut-title">Profil ${i+1} &mdash; ${stockLen/1000} mt</span>
+        <span class="cut-badge ${badgeCls}">${badgeTxt}</span>
+      </div>
+      ${svgBand}
+      <table class="cuts-table">
+        <thead><tr>
+          <th>#</th><th>Uzunluk</th><th>Sol uç</th><th>Sağ uç</th>
+          <th>Bıçak</th><th>Not</th>
+        </tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+      ${b.rem > 0 ? `<div class="cuts-detail" style="margin-top:8px">Fire: <strong>${b.rem} mm</strong>${b.kerfs>0?' &nbsp;|&nbsp; Bıçak: <strong>'+b.kerfs+' mm</strong>':''}</div>` : ''}
+    </div>`;
+  });
+
+  // Malzeme özeti
+  const allUniq = [...new Set(pieces.map(p => p.origLen))].sort((a,b)=>a-b);
+  const summary = allUniq.map(len => {
+    const cnt = pieces.filter(p => p.origLen === len).length;
+    return `<span style="color:${colorMap[len]};font-weight:600">&#9632; ${len} mm</span> &times; ${cnt} adet`;
+  }).join(' &nbsp;&nbsp;');
+  html += `<div class="summary-box">${summary}</div>`;
+
+  res.innerHTML = html;
+  document.getElementById('pdf-btn').classList.add('visible');
+  res.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function exportPDF() {
+  const pn = document.getElementById('project-name').value.trim().replace(/[<>]/g, '');
+  document.title = pn ? `Kesim Listesi — ${pn}` : 'Kesim Listesi';
+  window.print();
+}
+
+render();
+</script>
+
+
+</body></html>
