@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Profil Kesim Optimizasyonu ve Fire Hesaplama | MyTools</title>
-<meta name="description" content="Alüminyum ve doğrusal profiller için ücretsiz kesim optimizasyonu. Stok boyu, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabıyla kesim planı oluşturun.">
+<meta name="description" content="Alüminyum ve doğrusal profiller için ücretsiz kesim optimizasyonu. Stok boyu, uç temizleme payı, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabıyla kesim planı oluşturun.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://mytools.com.tr/">
 
@@ -29,7 +29,7 @@
       "operatingSystem": "Web",
       "url": "https://mytools.com.tr/",
       "inLanguage": "tr-TR",
-      "description": "Alüminyum ve doğrusal profiller için stok boyu, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabı yapan ücretsiz web aracı.",
+      "description": "Alüminyum ve doğrusal profiller için stok boyu, uç temizleme payı, bıçak payı, 45°/90° uçlar, fire ve verimlilik hesabı yapan ücretsiz web aracı.",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -45,6 +45,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Bu sürümde ölçü, profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçü olarak kabul edilir. Açı seçimi yalnızca kesim yönünü gösterir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uç temizleme payı nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stok profilin başında ve sonunda boya, eloksal kusuru, ezik, çapak veya deformasyon nedeniyle kullanılamayan bölüm için ayrılan kayıptır. Varsayılan değer her uç için 50 mm'dir."
           }
         },
         {
@@ -225,7 +233,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 .divider { border: none; border-top: 1px solid #f0f0f0; margin: 1.5rem 0; }
 
 .metrics {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(5, 1fr);
   gap: 10px; margin-bottom: 1.5rem;
 }
 .metric { background: #f7f7f7; border-radius: 12px; padding: .9rem 1rem; text-align: center; }
@@ -378,6 +386,16 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
         <input type="number" id="kerf-input" value="5" min="0" max="30" step="0.5">
         <span>mm / kesim</span>
       </div>
+      <div class="setting-box">
+        <label>Başlangıç uç temizleme</label>
+        <input type="number" id="start-trim-input" value="50" min="0" max="500" step="1">
+        <span>mm / profil</span>
+      </div>
+      <div class="setting-box">
+        <label>Bitiş uç temizleme</label>
+        <input type="number" id="end-trim-input" value="50" min="0" max="500" step="1">
+        <span>mm / profil</span>
+      </div>
 
     </div>
   </div>
@@ -388,6 +406,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
     <div style="font-size:12px;color:#777;background:#f7f7f7;border:1px solid #eee;border-radius:10px;padding:9px 12px;margin-bottom:10px;line-height:1.5">
       Uzunluklar, profilin uzun yüzündeki <strong>dış köşeden dış köşeye bitmiş ölçü</strong> olarak girilmelidir.
       45° uç seçimi stok tüketimine ek pay eklemez; yalnızca kesim yönünü ve üretim bilgisini gösterir.
+      Başlangıç ve bitiş uç temizleme payları her stok profilden ayrı ayrı düşülür.
     </div>
     <div class="col-header">
       <span class="col-h">Uzunluk (mm)</span>
@@ -443,7 +462,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   <ol>
     <li>Proje adını ve tarihi girin.</li>
     <li>Kullanacağınız 3.000 mm veya 6.000 mm stok profil boyunu seçin.</li>
-    <li>Testerenizin kesim genişliğine göre bıçak payını (kerf) tanımlayın.</li>
+    <li>Stok başı ve sonundaki bozuk/boyalı bölümler için uç temizleme paylarını; ardından testerenizin kesim genişliğine göre bıçak payını (kerf) tanımlayın.</li>
     <li>Her parçanın dıştan dışa bitmiş uzunluğunu, adedini, uç açılarını ve notunu girin.</li>
     <li>“Hesapla” butonuyla planı oluşturun; sonucu kontrol edip PDF olarak kaydedin.</li>
   </ol>
@@ -452,6 +471,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   <ul>
     <li>Girilen ölçüler profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçüdür.</li>
     <li>45° uç seçimi stok tüketimine ilave uzunluk eklemez; kesim yönünü belirtir.</li>
+    <li>Başlangıç ve bitiş uç temizleme payları her stok profilden ayrı ayrı düşülür; varsayılan değerler 50 mm + 50 mm’dir.</li>
     <li>Bıçak payı, aynı stok profil üzerindeki parçalar arasındaki kesim kaybına uygulanır.</li>
     <li>Plan, hızlı bir sezgisel optimizasyon yöntemiyle oluşturulur; her veri setinde matematiksel optimum garanti edilmez.</li>
   </ul>
@@ -463,7 +483,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 
   <h3>Örnek hesap</h3>
   <p>
-    6.000 mm stok, 5 mm bıçak payı ve farklı adetlerde 1.200 mm, 900 mm ve 650 mm parçalar
+    6.000 mm stok, 50 mm başlangıç ve 50 mm bitiş temizleme payı, 5 mm bıçak payı ve farklı adetlerde 1.200 mm, 900 mm ve 650 mm parçalar
     girildiğinde araç; parçaları stok profillere dağıtır, her profil için kalan fireyi gösterir
     ve toplam malzeme kullanımını özetler.
   </p>
@@ -473,6 +493,10 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   <div class="faq-item">
     <h3>45 derece kesimde neden ek pay eklenmiyor?</h3>
     <p>Bu sürümde ölçü, profilin uzun yüzündeki dış köşeden dış köşeye bitmiş ölçü olarak kabul edilir. Bu nedenle açı seçimi yalnızca kesim yönünü gösterir.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Uç temizleme payı nedir?</h3>
+    <p>Stok profilin başında ve sonunda boya, eloksal kusuru, ezik, çapak veya deformasyon nedeniyle kullanılamayan bölüm için ayrılan kayıptır. Varsayılan değer her uç için 50 mm’dir ve kullanıcı tarafından değiştirilebilir.</p>
   </div>
   <div class="faq-item">
     <h3>Bıçak payı nedir?</h3>
@@ -516,6 +540,8 @@ function selectLen(btn, val) {
 }
 
 function getKerf() { return parseFloat(document.getElementById('kerf-input').value) || 0; }
+function getStartTrim() { return Math.max(0, parseFloat(document.getElementById('start-trim-input').value) || 0); }
+function getEndTrim() { return Math.max(0, parseFloat(document.getElementById('end-trim-input').value) || 0); }
 
 function escapeHTML(value) {
   return String(value ?? '').replace(/[&<>'"]/g, ch => ({
@@ -567,64 +593,60 @@ function render() {
 }
 
 /* ── Bant SVG'si ── */
-function makeSVG(bin, colorMap, kerf, stockLen) {
+function makeSVG(bin, colorMap, kerf, stockLen, startTrim, endTrim) {
   const W = 600, H = 28, pad = 2;
-  const usable = W - pad * 2;
+  const scaleW = W - pad * 2;
 
-  let x = pad;
+  const startTrimW = (startTrim / stockLen) * scaleW;
+  const endTrimW = (endTrim / stockLen) * scaleW;
+  const usableEndX = pad + scaleW - endTrimW;
+
+  let x = pad + startTrimW;
   let shapes = '';
 
+  if (startTrimW > 0) {
+    shapes += `<rect x="${pad}" y="2" width="${startTrimW}" height="${H-4}" rx="2" fill="#c9c9c9"/>`;
+  }
+  if (endTrimW > 0) {
+    shapes += `<rect x="${usableEndX}" y="2" width="${endTrimW}" height="${H-4}" rx="2" fill="#c9c9c9"/>`;
+  }
+
   bin.cuts.forEach((seg, idx) => {
-    // kerf bloğu (ilk parçadan önce yok)
     if (idx > 0 && kerf > 0) {
-      const kw = Math.max((kerf / stockLen) * usable, 3);
-      shapes += `<rect x="${x}" y="2" width="${kw}" height="${H-4}" rx="2" fill="#d0c0c0" opacity=".55"/>`;
+      const kw = Math.max((kerf / stockLen) * scaleW, 2);
+      shapes += `<rect x="${x}" y="2" width="${kw}" height="${H-4}" rx="1" fill="#d0c0c0" opacity=".75"/>`;
       x += kw;
     }
 
-    const rawW = (seg.effLen / stockLen) * usable;
-    const sw   = Math.max(rawW, 6);
-    const col  = colorMap[seg.origLen];
-
-    // Sol uç kesiği (45°)
+    const rawW = (seg.effLen / stockLen) * scaleW;
+    const sw = Math.max(rawW, 6);
+    const col = colorMap[seg.origLen];
     const clipL = seg.leftAngle === 45 ? 6 : 0;
-    // Sağ uç kesiği (45°)
     const clipR = seg.rightAngle === 45 ? 6 : 0;
-
     const y1 = 2, y2 = H - 2;
-
-    // Polygon noktaları
-    const tl = { x: x,           y: y1 + clipL };
-    const bl = { x: x,           y: y2          };
-    const tr = { x: x + sw,      y: y1          };
-    const br = { x: x + sw,      y: y2 - clipR  };
-    const tlc = { x: x,          y: y1          }; // sol üst köşe (90 ise aynı)
-    const brc = { x: x + sw,     y: y2          }; // sağ alt köşe (90 ise aynı)
+    const trX = x + sw;
 
     let pts;
     if (seg.leftAngle === 45 && seg.rightAngle === 45) {
-      pts = `${x},${y2} ${x},${tl.y} ${tr.x},${y1} ${br.x},${y2}`;
+      pts = `${x},${y2} ${x},${y1 + clipL} ${trX},${y1} ${trX},${y2 - clipR}`;
     } else if (seg.leftAngle === 45) {
-      pts = `${x},${y2} ${x},${tl.y} ${tr.x},${y1} ${tr.x},${y2}`;
+      pts = `${x},${y2} ${x},${y1 + clipL} ${trX},${y1} ${trX},${y2}`;
     } else if (seg.rightAngle === 45) {
-      pts = `${x},${y2} ${x},${y1} ${tr.x},${y1} ${brc.x},${y2 - clipR}`;
+      pts = `${x},${y2} ${x},${y1} ${trX},${y1} ${trX},${y2 - clipR}`;
     } else {
-      pts = `${x},${y1} ${tr.x},${y1} ${tr.x},${y2} ${x},${y2}`;
+      pts = `${x},${y1} ${trX},${y1} ${trX},${y2} ${x},${y2}`;
     }
 
     shapes += `<polygon points="${pts}" fill="${col}"/>`;
 
-    // Uzunluk etiketi
-    const label = seg.origLen >= 300 ? seg.origLen + '' : '';
-    if (sw > 24 && label) {
+    if (sw > 24 && seg.origLen >= 300) {
       shapes += `<text x="${x + sw/2}" y="${H/2 + 4}" text-anchor="middle"
-        font-size="10" font-weight="600" fill="white">${label}</text>`;
+        font-size="10" font-weight="600" fill="white">${seg.origLen}</text>`;
     }
     x += sw;
   });
 
-  // Fire bloğu
-  const wasteW = usable - (x - pad);
+  const wasteW = Math.max(0, usableEndX - x);
   if (wasteW > 2) {
     shapes += `<rect x="${x}" y="2" width="${wasteW}" height="${H-4}" rx="2" fill="#e8e8e8"/>`;
   }
@@ -632,11 +654,19 @@ function makeSVG(bin, colorMap, kerf, stockLen) {
   return `<svg class="bar-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg"
     style="border-radius:6px;background:#f0f0f0">${shapes}</svg>`;
 }
-
 /* ── Hesaplama ── */
 function calculate() {
   const res = document.getElementById('result');
   const kerf = getKerf();
+  const startTrim = getStartTrim();
+  const endTrim = getEndTrim();
+  const trimPerStock = startTrim + endTrim;
+  const usableLen = stockLen - trimPerStock;
+
+  if (usableLen <= 0) {
+    res.innerHTML = `<div class="error">Hata: Uç temizleme toplamı (${trimPerStock} mm), stok boyundan (${stockLen} mm) küçük olmalıdır.</div>`;
+    return;
+  }
 
   let pieces = [];
   let colorMap = {};
@@ -649,8 +679,8 @@ function calculate() {
 
     const effL = l; // Girilen ölçü dıştan dışa bitmiş ölçüdür; 45° için ek pay eklenmez.
 
-    if (effL > stockLen) {
-      res.innerHTML = `<div class="error">Hata: ${l} mm parça stok profilden (${stockLen} mm) büyük.</div>`;
+    if (effL > usableLen) {
+      res.innerHTML = `<div class="error">Hata: ${l} mm parça, uç temizleme paylarından sonra kalan kullanılabilir stok boyundan (${usableLen} mm) büyük.</div>`;
       return;
     }
     if (!colorMap[l]) { colorMap[l] = COLORS[colorIdx % COLORS.length]; colorIdx++; }
@@ -685,14 +715,15 @@ function calculate() {
         break;
       }
     }
-    if (!placed) bins.push({ cuts:[p], rem: stockLen - p.effLen, kerfs:0 });
+    if (!placed) bins.push({ cuts:[p], rem: usableLen - p.effLen, kerfs:0 });
   }
 
   const totalStock = bins.length;
   const totalMat   = totalStock * stockLen;
   const totalKerf  = bins.reduce((s,b) => s + b.kerfs, 0);
   const totalFire  = bins.reduce((s,b) => s + b.rem,   0);
-  const totalWaste = totalFire + totalKerf;
+  const totalTrim  = totalStock * trimPerStock;
+  const totalWaste = totalFire + totalKerf + totalTrim;
   const eff        = ((totalMat - totalWaste) / totalMat * 100).toFixed(1);
 
   // Proje bilgileri
@@ -711,24 +742,30 @@ function calculate() {
     Proje: <strong>${projName}</strong> &nbsp;|&nbsp;
     Tarih: <strong>${projDate}</strong> &nbsp;|&nbsp;
     Stok: ${stockLen/1000} mt &nbsp;|&nbsp;
+    Kullanılabilir: ${usableLen} mm &nbsp;|&nbsp;
     Bıçak payı: ${kerf} mm &nbsp;|&nbsp;
+    Uç temizleme: ${startTrim} + ${endTrim} mm &nbsp;|&nbsp;
     Ölçü referansı: dıştan dışa &nbsp;|&nbsp;
     Basım: ${printTime}
   </div>
   <div class="metrics">
     <div class="metric"><div class="val">${totalStock}</div><div class="lbl">Profil sayısı</div></div>
-    <div class="metric"><div class="val">${(totalFire/1000).toFixed(3)} m</div><div class="lbl">Toplam fire</div></div>
+    <div class="metric"><div class="val">${(totalFire/1000).toFixed(3)} m</div><div class="lbl">Kalan fire</div></div>
+    <div class="metric"><div class="val">${(totalTrim/1000).toFixed(3)} m</div><div class="lbl">Uç temizleme</div></div>
     <div class="metric"><div class="val">${(totalKerf/1000).toFixed(3)} m</div><div class="lbl">Bıçak kaybı</div></div>
-    <div class="metric"><div class="val">%${eff}</div><div class="lbl">Verimlilik</div></div>
+    <div class="metric"><div class="val">%${eff}</div><div class="lbl">Net verimlilik</div></div>
   </div>
   <span class="result-label">
     Kesim planı &mdash; stok: ${stockLen/1000} mt &nbsp;|&nbsp;
+    kullanılabilir: ${usableLen} mm &nbsp;|&nbsp;
+    uç temizleme: ${startTrim} + ${endTrim} mm &nbsp;|&nbsp;
     bıçak payı: ${kerf} mm &nbsp;|&nbsp;
     ölçü: dıştan dışa bitmiş ölçü
   </span>
   <div class="legend">
+    <span><div class="legend-box" style="background:#c9c9c9"></div>Uç temizleme (${startTrim} + ${endTrim} mm)</span>
     <span><div class="legend-box" style="background:#d0c0c0;opacity:.7"></div>Bıçak kaybı (${kerf} mm)</span>
-    <span><div class="legend-box" style="background:#e8e8e8"></div>Fire (arta kalan)</span>
+    <span><div class="legend-box" style="background:#e8e8e8"></div>Kalan fire</span>
     <span style="color:#185FA5">◤ Köşeli uç = 45° miter</span>
   </div>`;
 
@@ -737,7 +774,7 @@ function calculate() {
     const badgeCls  = fireRatio < 0.05 ? '' : 'warn';
     const badgeTxt  = b.rem === 0 ? 'Tam dolu' : fireRatio < 0.05 ? 'Verimli' : `Fire: ${b.rem} mm`;
 
-    const svgBand = makeSVG(b, colorMap, kerf, stockLen);
+    const svgBand = makeSVG(b, colorMap, kerf, stockLen, startTrim, endTrim);
 
     // Detay tablosu
     let tableRows = b.cuts.map((seg, idx) => {
@@ -769,7 +806,11 @@ function calculate() {
         </tr></thead>
         <tbody>${tableRows}</tbody>
       </table>
-      ${b.rem > 0 ? `<div class="cuts-detail" style="margin-top:8px">Fire: <strong>${b.rem} mm</strong>${b.kerfs>0?' &nbsp;|&nbsp; Bıçak: <strong>'+b.kerfs+' mm</strong>':''}</div>` : ''}
+      <div class="cuts-detail" style="margin-top:8px">
+        Uç temizleme: <strong>${startTrim + endTrim} mm</strong>
+        &nbsp;|&nbsp; Kalan fire: <strong>${b.rem} mm</strong>
+        ${b.kerfs>0?' &nbsp;|&nbsp; Bıçak: <strong>'+b.kerfs+' mm</strong>':''}
+      </div>
     </div>`;
   });
 
