@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html lang="tr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="tr"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ücretsiz Profil Kesim Optimizasyonu ve Fire Hesaplama | MyTools</title>
-<meta name="description" content="Ücretsiz profil kesim optimizasyonu ve fire hesaplama aracı. Kayıt olmadan alüminyum, kutu ve doğrusal profiller için kesim planı oluşturun; stok, kerf, uç temizleme, fire ve verimliliği hesaplayın.">
+<title>Ücretsiz Profil Kesim Hesaplama ve Optimizasyon | MyTools</title>
+<meta name="description" content="Ücretsiz profil kesim hesaplama ve optimizasyon aracı. Alüminyum, kutu ve doğrusal profiller için kesim planı oluşturun; stok adedi, kerf, uç temizleme, fire ve verimliliği hesaplayın.">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="author" content="OR Design Danışmanlık Ofisi Dış Ticaret Ltd. Şti.">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://mytools.com.tr/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="MyTools">
-<meta property="og:title" content="Ücretsiz Profil Kesim Optimizasyonu ve Fire Hesaplama | MyTools">
-<meta property="og:description" content="Kayıt olmadan ücretsiz kesim planı oluşturun; stok adedi, uç temizleme, bıçak payı, fire ve verimliliği hesaplayın.">
+<meta property="og:title" content="Ücretsiz Profil Kesim Hesaplama ve Optimizasyon | MyTools">
+<meta property="og:description" content="Kayıt olmadan ücretsiz profil kesim hesabı ve kesim planı oluşturun; stok adedi, uç temizleme, bıçak payı, fire ve verimliliği hesaplayın.">
 <meta property="og:url" content="https://mytools.com.tr/">
 
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ücretsiz Profil Kesim Optimizasyonu ve Fire Hesaplama | MyTools">
+<meta name="twitter:title" content="Ücretsiz Profil Kesim Hesaplama ve Optimizasyon | MyTools">
 <meta name="twitter:description" content="Kayıt olmadan ücretsiz profil kesim planı oluşturun; fireyi, kerfi ve verimliliği hesaplayın.">
 
 <script type="application/ld+json">
@@ -44,11 +48,10 @@
     {
       "@type": "SoftwareApplication",
       "@id": "https://mytools.com.tr/#application",
-      "name": "MyTools Ücretsiz Profil Kesim Optimizasyonu",
-      "alternateName": "Profil Kesim Optimizasyonu ve Fire Hesaplama",
+      "name": "MyTools Ücretsiz Profil Kesim Hesaplama ve Optimizasyon",
+      "alternateName": "Profil Kesim Hesaplama, Optimizasyon ve Fire Hesaplama",
       "applicationCategory": "BusinessApplication",
       "applicationSubCategory": "Cutting Optimization Tool",
-      "softwareVersion": "1.1.1",
       "operatingSystem": "Web Browser",
       "browserRequirements": "JavaScript destekleyen güncel bir web tarayıcısı",
       "url": "https://mytools.com.tr/",
@@ -58,8 +61,6 @@
       "featureList": [
         "Ücretsiz ve kayıtsız kullanım",
         "3.000 mm ve 6.000 mm stok seçimi",
-        "Özel stok uzunluğu",
-        "Excel’den kopyala-yapıştır ile toplu veri aktarımı",
         "Bıçak payı (kerf) hesabı",
         "Başlangıç ve bitiş uç temizleme payı",
         "45° ve 90° uç yönü",
@@ -223,9 +224,6 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   grid-template-columns: 90px 54px 90px 90px 1fr 28px;
   gap: 6px; align-items: center; margin-bottom: 8px;
 }
-
-.mobile-field { display: contents; }
-.mobile-col-label { display: none; }
 
 .cut-row input[type=number] {
   padding: 8px 10px; border: 1.5px solid #e0e0e0;
@@ -406,35 +404,9 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   .container { padding: 1.25rem; }
   .project-grid { grid-template-columns: 1fr; }
   .settings-grid { grid-template-columns: 1fr; }
-
-  /* V1.1.1: parça satırlarını dar ekranda sıkıştırmak yerine kart düzenine geçir. */
-  .col-header { display: none; }
-  .cut-row {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
-    grid-template-areas:
-      "len qty"
-      "left right"
-      "note note";
-    gap: 10px;
-    align-items: end;
-    margin-bottom: 10px;
-    padding: 12px 48px 12px 12px;
-    border: 1px solid #e9e9e9;
-    border-radius: 12px;
-    background: #fafafa;
+  .col-header, .cut-row {
+    grid-template-columns: 80px 46px 82px 82px 1fr 28px;
   }
-  .mobile-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
-  .mobile-col-label { display: block; font-size: 10px; color: #999; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
-  .mf-len { grid-area: len; }
-  .mf-qty { grid-area: qty; }
-  .mf-left { grid-area: left; }
-  .mf-right { grid-area: right; }
-  .mf-note { grid-area: note; }
-  .cut-row .del-btn { position: absolute; top: 12px; right: 10px; width: 30px; height: 30px; }
-  .cut-row input[type=number], .cut-row .note-input { min-height: 40px; background: #fff; }
-  .cut-row .angle-sel { height: 40px; background: #fff; }
 }
 
 
@@ -502,6 +474,29 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 .site-footer a:hover { text-decoration: underline; }
 @media print { .info-content, .site-footer { display: none !important; } }
 
+
+/* SEO V1.2: rehber bağlantısı - hesaplama iş akışı değiştirilmedi */
+.guide-banner{margin:1.35rem 0 0;padding:1.1rem 1.25rem;background:#f0f6ff;border:1px solid #cfe1fb;border-radius:12px}
+.guide-banner h2{font-size:17px;margin:0 0 .4rem;color:#193c67}
+.guide-banner p{margin:0 0 .65rem;font-size:13px;line-height:1.6;color:#39495e}
+.guide-link{display:inline-block;font-size:13px;font-weight:700;color:#185fa5;text-decoration:underline;text-underline-offset:3px}
+.guide-link:focus-visible{outline:2px solid #185fa5;outline-offset:4px}
+@media print{.guide-banner{display:none!important}}
+
+.guide-cluster {
+  margin: 1.5rem 0;
+  padding: 16px;
+  border: 1px solid #dfeaf4;
+  border-radius: 12px;
+  background: #f8fbff;
+}
+.guide-cluster h3 { margin: 0 0 .45rem; }
+.guide-cluster p { margin: 0 0 .6rem; }
+.guide-cluster ul { margin: 0; padding-left: 1.25rem; }
+.guide-cluster li { margin: .35rem 0; }
+.guide-cluster a { color: #185FA5; font-weight: 600; text-decoration: none; }
+.guide-cluster a:hover { text-decoration: underline; }
+
 </style>
 </head>
 <body>
@@ -509,7 +504,7 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 <div class="container">
 
   <header class="hero-copy">
-    <h1>Ücretsiz Profil Kesim Optimizasyonu ve Fire Hesaplama <span class="version-badge">V1.1.1</span></h1>
+    <h1>Ücretsiz Profil Kesim Hesaplama ve Optimizasyon <span class="version-badge">V1.1</span></h1>
     <p class="subtitle">Alüminyum, kutu ve diğer doğrusal profiller için dıştan dışa bitmiş ölçülere göre hızlı kesim planı oluşturun.</p>
     <div class="trust-row" aria-label="Araç özellikleri">
       <span class="trust-chip"><strong>Ücretsiz</strong> kullanım</span>
@@ -539,9 +534,9 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
   <div class="section no-print">
     <span class="label">Stok profil uzunluğu</span>
     <div class="stock-options">
-      <button type="button" class="toggle-btn active" data-stock-option="" onclick="selectLen(this,6000)">6 mt &nbsp;(6000 mm)</button>
-      <button type="button" class="toggle-btn" data-stock-option="" onclick="selectLen(this,3000)">3 mt &nbsp;(3000 mm)</button>
-      <button type="button" class="toggle-btn" data-stock-option="" onclick="selectCustomLen(this)">Özel stok boyu</button>
+      <button type="button" class="toggle-btn active" data-stock-option onclick="selectLen(this,6000)">6 mt &nbsp;(6000 mm)</button>
+      <button type="button" class="toggle-btn" data-stock-option onclick="selectLen(this,3000)">3 mt &nbsp;(3000 mm)</button>
+      <button type="button" class="toggle-btn" data-stock-option onclick="selectCustomLen(this)">Özel stok boyu</button>
     </div>
     <div class="custom-stock-wrap" id="custom-stock-wrap">
       <label for="custom-stock-input">Özel stok uzunluğu</label>
@@ -595,14 +590,14 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
       <textarea id="import-text" spellcheck="false" placeholder="Excel tablonuzu buraya yapıştırın..." oninput="previewImport()"></textarea>
       <div class="import-actions">
         <div class="import-mode" role="group" aria-label="Aktarım biçimi">
-          <label><input type="radio" name="import-mode" value="replace" checked=""> Listeyi değiştir</label>
+          <label><input type="radio" name="import-mode" value="replace" checked> Listeyi değiştir</label>
           <label><input type="radio" name="import-mode" value="append"> Listeye ekle</label>
         </div>
         <button type="button" class="tool-btn" onclick="closeImportPanel()">Kapat</button>
         <button type="button" class="tool-btn primary-lite" onclick="applyImport()">Geçerli satırları aktar</button>
       </div>
       <div id="import-status" class="import-status" aria-live="polite"></div>
-      <div id="import-preview" class="import-preview" hidden=""></div>
+      <div id="import-preview" class="import-preview" hidden></div>
     </div>
     <div class="col-header">
       <span class="col-h">Uzunluk (mm)</span>
@@ -614,18 +609,18 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
     </div>
     <div id="cuts-list">
     <div class="cut-row">
-      <label class="mobile-field mf-len"><span class="mobile-col-label">Uzunluk (mm)</span><input aria-label="Uzunluk (mm)" type="number" placeholder="örn: 1200" value="" min="1" oninput="syncField(0,&#39;len&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}"></label>
-      <label class="mobile-field mf-qty"><span class="mobile-col-label">Adet</span><input aria-label="Adet" type="number" value="1" min="1" oninput="syncField(0,&#39;qty&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}"></label>
-      <div class="mobile-field mf-left"><span class="mobile-col-label">Sol uç</span><div class="angle-sel" aria-label="Sol uç açısı">
+      <input type="number" placeholder="örn: 1200" value="" min="1" oninput="syncField(0,&#39;len&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}">
+      <input type="number" value="1" min="1" oninput="syncField(0,&#39;qty&#39;,this.value)" onkeydown="if(event.key===&#39;Enter&#39;){addRow();}">
+      <div class="angle-sel">
         <button type="button" class="on" onclick="setAngle(0,&#39;leftAngle&#39;,90)">90°</button>
         <button type="button" class="" onclick="setAngle(0,&#39;leftAngle&#39;,45)">45°</button>
-      </div></div>
-      <div class="mobile-field mf-right"><span class="mobile-col-label">Sağ uç</span><div class="angle-sel" aria-label="Sağ uç açısı">
+      </div>
+      <div class="angle-sel">
         <button type="button" class="on" onclick="setAngle(0,&#39;rightAngle&#39;,90)">90°</button>
         <button type="button" class="" onclick="setAngle(0,&#39;rightAngle&#39;,45)">45°</button>
-      </div></div>
-      <label class="mobile-field mf-note"><span class="mobile-col-label">Not / konum</span><input aria-label="Not veya konum" class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="" oninput="syncField(0,&#39;note&#39;,this.value)"></label>
-      <button type="button" class="del-btn" aria-label="Satırı sil" onclick="removeRow(0)">×</button>
+      </div>
+      <input class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="" oninput="syncField(0,&#39;note&#39;,this.value)">
+      <button type="button" class="del-btn" onclick="removeRow(0)">×</button>
     </div>
   </div>
     <button type="button" class="add-btn" onclick="addRow()">+ Yeni uzunluk ekle</button>
@@ -710,6 +705,21 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
     ve toplam malzeme kullanımını özetler.
   </p>
 
+
+  <aside class="guide-banner" aria-labelledby="guide-banner-title">
+    <h2 id="guide-banner-title">Profil kesim hesabını adım adım öğrenin</h2>
+    <p>6.000 mm stok profil, uç temizleme ve bıçak payı ile örnek hesap; 45°/90° ölçü kuralı ve fire/verimlilik açıklamaları.</p>
+    <div class="guide-cluster" aria-label="Profil kesim rehberleri">
+      <h3>Profil kesim rehberleri</h3>
+      <p>Hesabın mantığını, fireyi ve testere payını ayrı teknik rehberlerde inceleyebilirsiniz.</p>
+      <ul>
+        <li><a href="/rehber/profil-kesim-hesaplama.html">Profil kesim hesaplama nasıl yapılır?</a></li>
+        <li><a href="/rehber/profil-fire-hesaplama.html">Profil fire hesaplama ve verimlilik</a></li>
+        <li><a href="/rehber/testere-bicak-payi-kerf.html">Testere bıçak payı (kerf) nedir?</a></li>
+      </ul>
+    </div>
+  </aside>
+
   <h2>Sık Sorulan Sorular</h2>
 
   <div class="faq-item">
@@ -745,16 +755,14 @@ h1 { font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.2rem; }
 
 <footer class="site-footer">
   <span>© 2026 MyTools · OR Design Danışmanlık Ofisi Dış Ticaret Ltd. Şti.</span>
-  <a href="https://mytools.com.tr/gizlilik.html">Gizlilik ve KVKK</a>
-  <a href="https://mytools.com.tr/kullanim-sartlari.html">Kullanım Şartları</a>
-  <a href="https://mytools.com.tr/sorumluluk.html">Sorumluluk Sınırı</a>
+  <a href="/gizlilik.html">Gizlilik ve KVKK</a>
+  <a href="/kullanim-sartlari.html">Kullanım Şartları</a>
+  <a href="/sorumluluk.html">Sorumluluk Sınırı</a>
 </footer>
 
 <script>
-// MyTools V1.1.1: V1.1 hesap çekirdeği + mobil giriş kartları + anonim ürün olayları.
+// MyTools V1.1 revizyonu: dıştan dışa ölçü esaslı 45° kesim mantığı.
 let stockLen = 6000;
-let stockMode = '6000';
-let lastInputMethod = 'manual';
 let rows = [{ len:'', qty:'1', leftAngle:90, rightAngle:90, note:'' }];
 
 const COLORS = [
@@ -763,49 +771,17 @@ const COLORS = [
   '#185FA5','#0F6E56','#993C1D','#533489'
 ];
 
-
-/* ── V1.1.1 anonim ürün analitiği ──
-   Tam ölçü, proje adı ve not gönderilmez. Zaraz etkinse custom event yollar;
-   değilse uygulama normal şekilde çalışmaya devam eder. */
-const MYTOOLS_VERSION = '1.1.1';
-function bucketCount(n) {
-  const v = Number(n) || 0;
-  if (v <= 1) return '1';
-  if (v <= 5) return '2-5';
-  if (v <= 10) return '6-10';
-  if (v <= 25) return '11-25';
-  if (v <= 50) return '26-50';
-  if (v <= 100) return '51-100';
-  return '100+';
-}
-function trackEvent(name, props = {}) {
-  const safeProps = { app_version: MYTOOLS_VERSION, ...props };
-  try {
-    window.dispatchEvent(new CustomEvent('mytools:analytics', { detail: { name, props: safeProps } }));
-  } catch (_) {}
-  try {
-    if (window.zaraz && typeof window.zaraz.track === 'function') {
-      Promise.resolve(window.zaraz.track(name, safeProps)).catch(() => {});
-    }
-  } catch (_) {}
-}
-function trackValidationError(type) {
-  trackEvent('validation_error', { error_type: type, input_method: lastInputMethod });
-}
-
 // Bugünün tarihini varsayılan olarak ata
 document.getElementById('project-date').value = new Date().toISOString().slice(0,10);
 
 function selectLen(btn, val) {
   stockLen = val;
-  stockMode = String(val);
   document.querySelectorAll('[data-stock-option]').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('custom-stock-wrap').classList.remove('visible');
 }
 
 function selectCustomLen(btn) {
-  stockMode = 'custom';
   document.querySelectorAll('[data-stock-option]').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('custom-stock-wrap').classList.add('visible');
@@ -896,10 +872,7 @@ function parseImportText(text) {
 function toggleImportPanel() {
   const panel = document.getElementById('import-panel');
   panel.classList.toggle('visible');
-  if (panel.classList.contains('visible')) {
-    trackEvent('excel_import_opened');
-    setTimeout(() => document.getElementById('import-text').focus(), 30);
-  }
+  if (panel.classList.contains('visible')) setTimeout(() => document.getElementById('import-text').focus(), 30);
 }
 function closeImportPanel() { document.getElementById('import-panel').classList.remove('visible'); }
 
@@ -925,18 +898,11 @@ function applyImport() {
   if (!parsed.valid.length) {
     status.className = 'import-status error';
     status.textContent = 'Aktarılabilecek geçerli satır bulunamadı.';
-    trackEvent('excel_import_error', { error_rows: bucketCount(parsed.errors.length) });
     return;
   }
   const mode = document.querySelector('input[name="import-mode"]:checked').value;
   const currentIsBlank = rows.length === 1 && !String(rows[0].len).trim() && !String(rows[0].note).trim();
   rows = mode === 'append' && !currentIsBlank ? rows.concat(parsed.valid) : parsed.valid;
-  lastInputMethod = 'excel';
-  trackEvent('excel_import_completed', {
-    mode,
-    valid_rows: bucketCount(parsed.valid.length),
-    error_rows: parsed.errors.length ? bucketCount(parsed.errors.length) : '0'
-  });
   render();
   document.getElementById('result').innerHTML = '';
   document.getElementById('pdf-btn').classList.remove('visible');
@@ -946,8 +912,6 @@ function applyImport() {
 }
 
 function loadSampleData() {
-  lastInputMethod = 'sample';
-  trackEvent('sample_loaded');
   rows = [
     { len:'1200', qty:'4', leftAngle:90, rightAngle:45, note:'Dikey profil' },
     { len:'900', qty:'3', leftAngle:45, rightAngle:45, note:'Üst kayıt' },
@@ -959,8 +923,6 @@ function loadSampleData() {
 }
 
 function clearAllData() {
-  lastInputMethod = 'manual';
-  trackEvent('form_cleared');
   rows = [{ len:'', qty:'1', leftAngle:90, rightAngle:90, note:'' }];
   document.getElementById('project-name').value = '';
   document.getElementById('project-date').value = new Date().toISOString().slice(0,10);
@@ -981,23 +943,23 @@ function clearAllData() {
 function render() {
   document.getElementById('cuts-list').innerHTML = rows.map((r, i) => `
     <div class="cut-row">
-      <label class="mobile-field mf-len"><span class="mobile-col-label">Uzunluk (mm)</span><input aria-label="Uzunluk (mm)" type="number" placeholder="örn: 1200" value="${escapeHTML(r.len)}" min="1"
-        oninput="syncField(${i},'len',this.value); lastInputMethod='manual'"
-        onkeydown="if(event.key==='Enter'){addRow();}"></label>
-      <label class="mobile-field mf-qty"><span class="mobile-col-label">Adet</span><input aria-label="Adet" type="number" value="${escapeHTML(r.qty)}" min="1"
-        oninput="syncField(${i},'qty',this.value); lastInputMethod='manual'"
-        onkeydown="if(event.key==='Enter'){addRow();}"></label>
-      <div class="mobile-field mf-left"><span class="mobile-col-label">Sol uç</span><div class="angle-sel" aria-label="Sol uç açısı">
-        <button type="button" class="${r.leftAngle===90?'on':''}"  onclick="setAngle(${i},'leftAngle',90); lastInputMethod='manual'">90°</button>
-        <button type="button" class="${r.leftAngle===45?'on':''}"  onclick="setAngle(${i},'leftAngle',45); lastInputMethod='manual'">45°</button>
-      </div></div>
-      <div class="mobile-field mf-right"><span class="mobile-col-label">Sağ uç</span><div class="angle-sel" aria-label="Sağ uç açısı">
-        <button type="button" class="${r.rightAngle===90?'on':''}" onclick="setAngle(${i},'rightAngle',90); lastInputMethod='manual'">90°</button>
-        <button type="button" class="${r.rightAngle===45?'on':''}" onclick="setAngle(${i},'rightAngle',45); lastInputMethod='manual'">45°</button>
-      </div></div>
-      <label class="mobile-field mf-note"><span class="mobile-col-label">Not / konum</span><input aria-label="Not veya konum" class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="${escapeHTML(r.note)}"
-        oninput="syncField(${i},'note',this.value); lastInputMethod='manual'"></label>
-      <button type="button" class="del-btn" aria-label="Satırı sil" onclick="removeRow(${i})">&#215;</button>
+      <input type="number" placeholder="örn: 1200" value="${escapeHTML(r.len)}" min="1"
+        oninput="syncField(${i},'len',this.value)"
+        onkeydown="if(event.key==='Enter'){addRow();}">
+      <input type="number" value="${escapeHTML(r.qty)}" min="1"
+        oninput="syncField(${i},'qty',this.value)"
+        onkeydown="if(event.key==='Enter'){addRow();}">
+      <div class="angle-sel">
+        <button type="button" class="${r.leftAngle===90?'on':''}"  onclick="setAngle(${i},'leftAngle',90)">90°</button>
+        <button type="button" class="${r.leftAngle===45?'on':''}"  onclick="setAngle(${i},'leftAngle',45)">45°</button>
+      </div>
+      <div class="angle-sel">
+        <button type="button" class="${r.rightAngle===90?'on':''}" onclick="setAngle(${i},'rightAngle',90)">90°</button>
+        <button type="button" class="${r.rightAngle===45?'on':''}" onclick="setAngle(${i},'rightAngle',45)">45°</button>
+      </div>
+      <input class="note-input" type="text" placeholder="ör: çatı kirişi, kolon A2…" value="${escapeHTML(r.note)}"
+        oninput="syncField(${i},'note',this.value)">
+      <button type="button" class="del-btn" onclick="removeRow(${i})">&#215;</button>
     </div>
   `).join('');
 }
@@ -1074,7 +1036,6 @@ function calculate() {
   const usableLen = stockLen - trimPerStock;
 
   if (usableLen <= 0) {
-    trackValidationError('trim_exceeds_stock');
     res.innerHTML = `<div class="error">Hata: Uç temizleme toplamı (${trimPerStock} mm), stok boyundan (${stockLen} mm) küçük olmalıdır.</div>`;
     return;
   }
@@ -1091,7 +1052,6 @@ function calculate() {
     const effL = l; // Girilen ölçü dıştan dışa bitmiş ölçüdür; 45° için ek pay eklenmez.
 
     if (effL > usableLen) {
-      trackValidationError('piece_exceeds_usable_stock');
       res.innerHTML = `<div class="error">Hata: ${l} mm parça, uç temizleme paylarından sonra kalan kullanılabilir stok boyundan (${usableLen} mm) büyük.</div>`;
       return;
     }
@@ -1107,7 +1067,6 @@ function calculate() {
   }
 
   if (!pieces.length) {
-    trackValidationError('no_valid_piece');
     res.innerHTML = `<div class="error">Lütfen en az bir geçerli uzunluk girin.</div>`;
     return;
   }
@@ -1138,16 +1097,6 @@ function calculate() {
   const totalTrim  = totalStock * trimPerStock;
   const totalWaste = totalFire + totalKerf + totalTrim;
   const eff        = ((totalMat - totalWaste) / totalMat * 100).toFixed(1);
-
-  trackEvent('calculation_completed', {
-    input_method: lastInputMethod,
-    stock_mode: stockMode,
-    piece_count: bucketCount(pieces.length),
-    profile_count: bucketCount(totalStock),
-    has_trim: trimPerStock > 0 ? 'yes' : 'no',
-    has_kerf: kerf > 0 ? 'yes' : 'no'
-  });
-  if (stockMode === 'custom') trackEvent('custom_stock_used');
 
   // Proje bilgileri
   const projNameRaw = document.getElementById('project-name').value.trim() || '—';
@@ -1251,7 +1200,6 @@ function calculate() {
 }
 
 function exportPDF() {
-  trackEvent('print_export', { input_method: lastInputMethod });
   const originalTitle = document.title;
   const pn = document.getElementById('project-name').value.trim().replace(/[<>]/g, '');
   document.title = pn ? `Kesim Listesi — ${pn}` : 'Kesim Listesi';
@@ -1263,5 +1211,4 @@ render();
 </script>
 
 
-<!-- V1.1.1 analytics hook: custom events are sent only when Cloudflare Zaraz is enabled. -->
 </body></html>
